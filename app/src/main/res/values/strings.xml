@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">bymybeer</string>
+
+    <string name="main_image_desc">Photo</string>
+    <string name="from_camera_desc">Take new photo</string>
+    <string name="from_gallery_desc">Select from gallery</string>
+
+    <string name="general_info">Общая информация</string>
+    <string name="general_info_desc">General info</string>
+
+    <string name="name_hint">Название</string>
+    <string name="name_desc">Beer name</string>
+
+    <string name="type_hint">Тип</string>
+    <string name="type_desc">Beer type</string>
+
+    <string name="rating">Рейтинг</string>
+    <string name="rating_desc">Rating</string>
+
+
+</resources>
