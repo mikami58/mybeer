@@ -1,4 +1,4 @@
-package com.mikami.bymybeer.Activity;
+package com.mikami.bymybeer.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +19,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.mikami.bymybeer.R;
-import com.mikami.bymybeer.Utility.GenericFileProvider;
 
 import java.io.File;
 
@@ -73,7 +73,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             dir.mkdirs();
             File photo = new File(dir, String.valueOf(System.currentTimeMillis()) + ".png");
 
-            Uri photoUri = GenericFileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".com.mikami.bymybeer.provider", photo);
+            Uri photoUri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".com.mikami.bymybeer.provider", photo);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, photoUri);

@@ -4,18 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.MainActivity">
+    tools:context=".activity.MainActivity">
 
-    <GridView
-        android:id="@+id/mainGridView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mainRecycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:horizontalSpacing="6dp"
-        android:numColumns="2"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="6dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/mainAddButton"
