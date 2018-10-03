@@ -27,7 +27,7 @@
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        android:src="@drawable/ic_add_white_24dp" />
 
 
 </android.support.constraint.ConstraintLayout>
