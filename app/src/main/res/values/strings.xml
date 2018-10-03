@@ -17,5 +17,22 @@
     <string name="rating">Рейтинг</string>
     <string name="rating_desc">Rating</string>
 
+    <string name="cost">Цена</string>
+    <string name="cost_desc">Cost</string>
+
+    <string name="bitterness">Горечь</string>
+    <string name="bitterness_desc">Bitterness</string>
+
+    <string name="taste">Вкус</string>
+    <string name="taste_desc">Taste</string>
+
+    <string name="saturation">Насыщенность</string>
+    <string name="saturation_desc">Saturation</string>
+
+    <string name="alcohol">Крепость</string>
+    <string name="alcohol_desc">Alcohol</string>
+
+    <string name="note">Примечание</string>
+    <string name="note_desc">Note</string>
 
 </resources>

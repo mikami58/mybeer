@@ -59,135 +59,278 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/general_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:contentDescription="@string/general_info_desc"
-                android:text="@string/general_info"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mainImage" />
-
-            <RelativeLayout
-                android:id="@+id/delimiter1"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/general_info" >
+                android:layout_marginTop="16dp">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_centerVertical="true"
-                    android:background="@color/colorPrimaryLight" />
-
-                <View
-                    android:layout_width="50dp"
-                    android:layout_height="3dp"
-                    android:layout_centerVertical="true"
-                    android:background="@color/colorAccent" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/general_info_block"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/delimiter1">
-
-                <EditText
-                    android:id="@+id/name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/name_hint"
-                    android:inputType="text" />
-
-                <EditText
-                    android:id="@+id/type"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/type_hint"
-                    android:inputType="text" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:contentDescription="@string/rating_desc"
-                android:text="@string/rating"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/general_info_block" />
-
-            <RelativeLayout
-                android:id="@+id/delimiter2"
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/rating" >
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_centerVertical="true"
-                    android:background="@color/colorPrimaryLight" />
-
-                <View
-                    android:layout_width="50dp"
-                    android:layout_height="3dp"
-                    android:layout_centerVertical="true"
-                    android:background="@color/colorAccent" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/rating_block"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/delimiter1">
-
-
-
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+                <TextView
+                    android:id="@+id/general_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:isIndicator="false"
+                    android:contentDescription="@string/general_info_desc"
+                    android:text="@string/general_info"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/delimiter2" />
+                    app:layout_constraintTop_toBottomOf="@+id/mainImage" />
 
-                <RatingBar
-                    android:id="@+id/ratingBar2"
-                    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+                <RelativeLayout
+                    android:id="@+id/delimiter1"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/general_info" >
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_centerVertical="true"
+                        android:background="@color/colorPrimaryLight" />
+
+                    <View
+                        android:layout_width="50dp"
+                        android:layout_height="3dp"
+                        android:layout_centerVertical="true"
+                        android:background="@color/colorAccent" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/general_info_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/delimiter1">
+
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/name_hint"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/type_hint"
+                        android:inputType="text" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:isIndicator="false"
+                    android:contentDescription="@string/rating_desc"
+                    android:text="@string/rating"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ratingBar"/>
+                    app:layout_constraintTop_toBottomOf="@+id/general_info_block" />
+
+                <RelativeLayout
+                    android:id="@+id/delimiter2"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/rating" >
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_centerVertical="true"
+                        android:background="@color/colorPrimaryLight" />
+
+                    <View
+                        android:layout_width="50dp"
+                        android:layout_height="3dp"
+                        android:layout_centerVertical="true"
+                        android:background="@color/colorAccent" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/rating_block"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/delimiter1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:id="@+id/cost"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/cost_desc"
+                            android:text="@string/cost"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_centerVertical="true"/>
+
+                        <RatingBar
+                            android:id="@+id/cost_rating"
+                            style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="false"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:id="@+id/bitterness"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/bitterness_desc"
+                            android:text="@string/bitterness"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_centerVertical="true"/>
+
+                        <RatingBar
+                            android:id="@+id/bitterness_rating"
+                            style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="false"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:id="@+id/taste"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/taste_desc"
+                            android:text="@string/taste"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_centerVertical="true"/>
+
+                        <RatingBar
+                            android:id="@+id/taste_rating"
+                            style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="false"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:id="@+id/saturation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/saturation_desc"
+                            android:text="@string/saturation"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_centerVertical="true"/>
+
+                        <RatingBar
+                            android:id="@+id/saturation_rating"
+                            style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="false"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:id="@+id/alcohol"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/alcohol_desc"
+                            android:text="@string/alcohol"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_centerVertical="true"/>
+
+                        <RatingBar
+                            android:id="@+id/alcohol_rating"
+                            style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="false"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/note_desc"
+                    android:text="@string/note"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/general_info_block" />
+
+                <RelativeLayout
+                    android:id="@+id/delimiter3"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/general_info" >
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_centerVertical="true"
+                        android:background="@color/colorPrimaryLight" />
+
+                    <View
+                        android:layout_width="50dp"
+                        android:layout_height="3dp"
+                        android:layout_centerVertical="true"
+                        android:background="@color/colorAccent" />
+
+                </RelativeLayout>
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:ems="10"
+                    android:inputType="textMultiLine" />
 
             </LinearLayout>
 
