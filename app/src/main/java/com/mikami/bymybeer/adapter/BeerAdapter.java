@@ -1,5 +1,7 @@
 package com.mikami.bymybeer.adapter;
 
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,12 +33,17 @@ public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder
     public BeerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_view_layout, parent, false);
-        
+        return new BeerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BeerViewHolder beerViewHolder, int i) {
+    public void onBindViewHolder(@NonNull BeerViewHolder holder, int i) {
 
+        BeerModel model = beerList.get(i);
+
+        holder.name.setText(model.getTitle());
+        holder.path.setText(model.getImageName());
+        holder.image.setImageBitmap(BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + "/ByMyBeer/" + model.getImageName()));
     }
 
     @Override

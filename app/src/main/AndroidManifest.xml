@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".activity.AddActivity"></activity>
         <provider
-            android:name=".Utility.GenericFileProvider"
+            android:name=".utility.GenericFileProvider"
             android:authorities="${applicationId}.com.mikami.bymybeer.provider"
             android:exported="false"
             android:grantUriPermissions="true">
