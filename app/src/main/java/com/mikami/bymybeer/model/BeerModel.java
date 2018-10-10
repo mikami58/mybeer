@@ -21,7 +21,7 @@ public class BeerModel implements Serializable {
 
     private String type;
 
-    private BigDecimal alcoholPercentage;
+    private float alcoholPercentage;
 
     private PriceModel beerPrice;
 
@@ -31,12 +31,15 @@ public class BeerModel implements Serializable {
 
     public BeerModel() { }
 
-    public BeerModel(long id, String title, String imageName, String type, BigDecimal alcoholPercentage) {
+    public BeerModel(long id, String title, String imageName, String type,
+                     float alcoholPercentage, PriceModel beerPrice, RatingModel rating) {
         this.id = id;
         this.title = title;
         this.imageName = imageName;
         this.type = type;
         this.alcoholPercentage = alcoholPercentage;
+        this.beerPrice = beerPrice;
+        this.rating = rating;
     }
 
     /**
@@ -77,9 +80,9 @@ public class BeerModel implements Serializable {
     /**
      * @return Beer alcohol percentage
      */
-    public BigDecimal getAlcoholPercentage() { return alcoholPercentage; }
+    public float getAlcoholPercentage() { return alcoholPercentage; }
 
-    public void setAlcoholPercentage(BigDecimal alcoholPercentage) { this.alcoholPercentage = alcoholPercentage; }
+    public void setAlcoholPercentage(float alcoholPercentage) { this.alcoholPercentage = alcoholPercentage; }
 
     /**
      * @return Beer price

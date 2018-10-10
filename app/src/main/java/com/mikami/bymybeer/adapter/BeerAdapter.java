@@ -1,5 +1,7 @@
 package com.mikami.bymybeer.adapter;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -10,20 +12,27 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.mikami.bymybeer.R;
 import com.mikami.bymybeer.model.BeerModel;
+import com.mikami.bymybeer.utility.FileService;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder> {
 
+    private Context mContext;
+
     private ArrayList<BeerModel> beerList;
 
-    public BeerAdapter(ArrayList<BeerModel> beerList) {
+    public BeerAdapter(Context mContext, ArrayList<BeerModel> beerList) {
+        this.mContext = mContext;
         this.beerList = beerList;
     }
 
-    public void updateItems(ArrayList<BeerModel> beerList) {
+    public void updateItems( ArrayList<BeerModel> beerList) {
         this.beerList = beerList;
         notifyDataSetChanged();
     }
@@ -43,7 +52,8 @@ public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder
 
         holder.name.setText(model.getTitle());
         holder.path.setText(model.getImageName());
-        holder.image.setImageBitmap(BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + "/ByMyBeer/" + model.getImageName()));
+
+        FileService.setImage(mContext, holder.image, model.getImageName());
     }
 
     @Override

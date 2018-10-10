@@ -3,7 +3,6 @@ package com.mikami.bymybeer.model;
 import com.mikami.bymybeer.model.enumerated.Currency;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * Beer price model
@@ -12,25 +11,33 @@ public class PriceModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private BigDecimal price;
+    private float price;
 
-    private BigDecimal volume;
+    private float volume;
 
     private Currency currency;
+
+    public PriceModel() { }
+
+    public PriceModel(float price, float volume) {
+        this.price = price;
+        this.volume = volume;
+        this.currency = Currency.RUB;
+    }
 
     /**
      * @return Price of one bottle
      */
-    public BigDecimal getPrice() { return price; }
+    public float getPrice() { return price; }
 
-    public void setPrice(BigDecimal price) { this.price = price; }
+    public void setPrice(float price) { this.price = price; }
 
     /**
      * @return Bottle volume
      */
-    public BigDecimal getVolume() { return volume; }
+    public float getVolume() { return volume; }
 
-    public void setVolume(BigDecimal volume) { this.volume = volume; }
+    public void setVolume(float volume) { this.volume = volume; }
 
     /**
      * @return Price currency

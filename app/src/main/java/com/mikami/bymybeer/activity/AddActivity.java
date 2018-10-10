@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 
 import com.mikami.bymybeer.R;
 
@@ -28,6 +29,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
     private String imagePath;
 
+    private RatingBar costRating;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
         imageView = findViewById(R.id.mainImage);
         imageView.setOnClickListener(this);
+
+        costRating = findViewById(R.id.cost_rating);
     }
 
     @Override
