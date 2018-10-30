@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">bymybeer</string>
 
+    <string name="rub">руб.</string>
+    <string name="usd">$</string>
+    <string name="eur">€</string>
+
     <string name="main_image_desc">Photo</string>
     <string name="from_camera_desc">Take new photo</string>
     <string name="from_gallery_desc">Select from gallery</string>
@@ -34,5 +38,8 @@
 
     <string name="note">Примечание</string>
     <string name="note_desc">Note</string>
+
+    <string name="small_desc">%1$s, %2$.1f%% алк.</string>
+    <string name="price_and_volume">%1$.0f %2$s за %3$.1f л.</string>
 
 </resources>

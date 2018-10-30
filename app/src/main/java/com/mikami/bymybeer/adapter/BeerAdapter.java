@@ -1,24 +1,20 @@
 package com.mikami.bymybeer.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.mikami.bymybeer.R;
 import com.mikami.bymybeer.model.BeerModel;
+import com.mikami.bymybeer.model.PriceModel;
 import com.mikami.bymybeer.utility.FileService;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder> {
@@ -51,7 +47,16 @@ public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder
         BeerModel model = beerList.get(i);
 
         holder.name.setText(model.getTitle());
-        holder.path.setText(model.getImageName());
+        holder.ratingNumber.setText(String.valueOf(model.getRating().getAverage()));
+        holder.ratingBar.setRating(model.getRating().getAverage());
+        holder.smallDesc.setText(mContext.getString(R.string.small_desc, model.getType(), model.getAlcoholPercentage()));
+
+        PriceModel price = model.getBeerPrice();
+        holder.priceAndVolume.setText(mContext.getString(
+                R.string.price_and_volume,
+                price.getPrice(),
+                mContext.getString(price.getCurrency().getResourceId()),
+                price.getVolume()));
 
         FileService.setImage(mContext, holder.image, model.getImageName());
     }
@@ -65,14 +70,23 @@ public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder
 
         private TextView name;
 
-        private TextView path;
+        private RatingBar ratingBar;
+
+        private TextView ratingNumber;
+
+        private TextView smallDesc;
+
+        private TextView priceAndVolume;
 
         private ImageView image;
 
         public BeerViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            path = itemView.findViewById(R.id.path);
+            ratingBar = itemView.findViewById(R.id.main_rating);
+            ratingNumber = itemView.findViewById(R.id.rating_number);
+            smallDesc = itemView.findViewById(R.id.small_desc);
+            priceAndVolume = itemView.findViewById(R.id.price_and_volume);
             image = itemView.findViewById(R.id.mainImage);
         }
     }

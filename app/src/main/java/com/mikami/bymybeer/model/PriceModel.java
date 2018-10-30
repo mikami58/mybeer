@@ -1,6 +1,6 @@
 package com.mikami.bymybeer.model;
 
-import com.mikami.bymybeer.model.enumerated.Currency;
+import com.mikami.bymybeer.model.enums.Currency;
 
 import java.io.Serializable;
 
