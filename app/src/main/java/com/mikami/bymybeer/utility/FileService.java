@@ -13,13 +13,12 @@ import java.io.File;
 public final class FileService {
 
     private static final String IMAGE_DIRECTORY = "/ByMyBeer/";
+    private static final int PLACEHOLDER = R.drawable.ic_launcher_background;
 
     private FileService() { }
 
     public static void setImage(Context mContext, ImageView image, String name) {
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.drawable.ic_launcher_background);
-
+        RequestOptions requestOptions = RequestOptions.placeholderOf(PLACEHOLDER);
         Glide.with(mContext)
                 .load(new File(FileService.getFilePath(name)))
                 .apply(requestOptions)

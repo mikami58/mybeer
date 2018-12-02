@@ -1,5 +1,6 @@
 package com.mikami.bymybeer.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import com.mikami.bymybeer.model.BeerModel;
 import com.mikami.bymybeer.R;
 import com.mikami.bymybeer.model.PriceModel;
 import com.mikami.bymybeer.model.RatingModel;
+import com.mikami.bymybeer.utility.PermissionsService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ensurePermissions();
         
         ArrayList<BeerModel> beerList = new ArrayList<>();
         beerList.add(new BeerModel(0, "Gold mine beer", "0.jpg", "Светлое", 2.5f, new PriceModel(50, 0.5f), new RatingModel(1.2f)));
@@ -67,5 +71,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, AddActivity.class));
             break;
         }
+    }
+
+    private void ensurePermissions() {
+        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+
+        PermissionsService.executeWithPermissions(this, permissions, new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
     }
 }

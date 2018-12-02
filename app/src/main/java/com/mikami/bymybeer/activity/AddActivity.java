@@ -2,7 +2,6 @@ package com.mikami.bymybeer.activity;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,8 +9,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 
 import com.mikami.bymybeer.R;
+import com.mikami.bymybeer.utility.PermissionsService;
 
 import java.io.File;
 
@@ -68,29 +66,27 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA};
 
-        boolean access = true;
-        for (String s : permissions)
-            access &= ContextCompat.checkSelfPermission(this.getApplicationContext(), s) == PackageManager.PERMISSION_GRANTED;
-        if (access) {
+        PermissionsService.executeWithPermissions(this, permissions, new Runnable() {
+            @Override
+            public void run() {
+                File basePath = Environment.getExternalStorageDirectory();
+                File dir = new File(basePath + "/ByMyBeer/");
+                dir.mkdirs();
+                File photo = new File(dir, String.valueOf(System.currentTimeMillis()) + ".png");
 
-            File basePath = Environment.getExternalStorageDirectory();
-            File dir = new File(basePath + "/ByMyBeer/");
-            dir.mkdirs();
-            File photo = new File(dir, String.valueOf(System.currentTimeMillis()) + ".png");
+                Uri photoUri = FileProvider.getUriForFile(
+                        AddActivity.this,
+                        AddActivity.this.getApplicationContext().getPackageName() + ".com.mikami.bymybeer.provider", photo);
 
-            Uri photoUri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".com.mikami.bymybeer.provider", photo);
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, photoUri);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, photoUri);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                startActivityForResult(intent, 0);
 
-            startActivityForResult(intent, 0);
-
-            imagePath = photo.getPath();
-            Log.d("TakePhoto", imagePath);
-        }
-        else {
-            ActivityCompat.requestPermissions(AddActivity.this, permissions, 1);
-        }
+                imagePath = photo.getPath();
+                Log.d("TakePhoto", imagePath);
+            }
+        });
     }
 }
