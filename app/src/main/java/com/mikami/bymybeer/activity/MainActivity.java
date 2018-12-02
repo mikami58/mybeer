@@ -8,16 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.RatingBar;
 
+import com.mikami.bymybeer.R;
 import com.mikami.bymybeer.adapter.BeerAdapter;
 import com.mikami.bymybeer.model.BeerModel;
-import com.mikami.bymybeer.R;
 import com.mikami.bymybeer.model.PriceModel;
 import com.mikami.bymybeer.model.RatingModel;
 import com.mikami.bymybeer.utility.PermissionsService;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {

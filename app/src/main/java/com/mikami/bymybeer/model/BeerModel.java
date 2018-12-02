@@ -1,7 +1,6 @@
 package com.mikami.bymybeer.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.Instant;
 
 /**
@@ -15,7 +14,7 @@ public class BeerModel implements Serializable {
 
     private Instant created;
 
-    private String title;
+    private String name;
 
     private String imageName;
 
@@ -31,15 +30,16 @@ public class BeerModel implements Serializable {
 
     public BeerModel() { }
 
-    public BeerModel(long id, String title, String imageName, String type,
+    public BeerModel(long id, String name, String imageName, String type,
                      float alcoholPercentage, PriceModel beerPrice, RatingModel rating) {
         this.id = id;
-        this.title = title;
+        this.name = name;
         this.imageName = imageName;
         this.type = type;
         this.alcoholPercentage = alcoholPercentage;
         this.beerPrice = beerPrice;
         this.rating = rating;
+        this.note = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     }
 
     /**
@@ -59,9 +59,9 @@ public class BeerModel implements Serializable {
     /**
      * @return Beer name
      */
-    public String getTitle() { return title; }
+    public String getName() { return name; }
 
-    public void setTitle(String title) { this.title = title; }
+    public void setName(String name) { this.name = name; }
 
     /**
      * @return Beer image name
