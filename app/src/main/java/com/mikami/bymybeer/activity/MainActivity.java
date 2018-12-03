@@ -14,6 +14,7 @@ import com.mikami.bymybeer.adapter.BeerAdapter;
 import com.mikami.bymybeer.model.BeerModel;
 import com.mikami.bymybeer.model.PriceModel;
 import com.mikami.bymybeer.model.RatingModel;
+import com.mikami.bymybeer.utility.DataProvider;
 import com.mikami.bymybeer.utility.PermissionsService;
 
 import java.util.ArrayList;
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         beerList.add(new BeerModel(17, "Белый медведь", "7.jpg", "Светлое", 3.1f, new PriceModel(50, 0.5f), new RatingModel(4.7f)));
         beerList.add(new BeerModel(18, "Арсенальное", "8.jpg", "Светлое", 2.1f, new PriceModel(50, 0.5f), new RatingModel(3.8f)));
         beerList.add(new BeerModel(19, "Очаково", "9.jpg", "Темное", 0.5f, new PriceModel(50, 0.5f), new RatingModel(2.1f)));
+
+        DataProvider.getInstance().save(beerList);
 
         mainRecyclerView = findViewById(R.id.mainRecycler);
         mainRecyclerView.setHasFixedSize(true);

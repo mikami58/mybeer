@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 
 import com.mikami.bymybeer.R;
+import com.mikami.bymybeer.utility.FileService;
 import com.mikami.bymybeer.utility.PermissionsService;
 
 import java.io.File;
@@ -69,10 +70,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         PermissionsService.executeWithPermissions(this, permissions, new Runnable() {
             @Override
             public void run() {
-                File basePath = Environment.getExternalStorageDirectory();
-                File dir = new File(basePath + "/ByMyBeer/");
-                dir.mkdirs();
-                File photo = new File(dir, String.valueOf(System.currentTimeMillis()) + ".png");
+
+                File photo = FileService.getFile(String.valueOf(System.currentTimeMillis()) + ".png");
 
                 Uri photoUri = FileProvider.getUriForFile(
                         AddActivity.this,

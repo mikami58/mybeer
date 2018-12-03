@@ -12,7 +12,8 @@ import java.io.File;
 
 public final class FileService {
 
-    private static final String IMAGE_DIRECTORY = "/ByMyBeer/";
+    private static final String FILE_DIRECTORY = Environment.getExternalStorageDirectory() + "/ByMyBeer/";
+
     private static final int PLACEHOLDER = R.drawable.ic_launcher_background;
 
     private FileService() { }
@@ -20,12 +21,14 @@ public final class FileService {
     public static void setImage(Context mContext, ImageView image, String name) {
         RequestOptions requestOptions = RequestOptions.placeholderOf(PLACEHOLDER);
         Glide.with(mContext)
-                .load(new File(FileService.getFilePath(name)))
+                .load(getFile(name))
                 .apply(requestOptions)
                 .into(image);
     }
 
-    private static String getFilePath(String name) {
-        return Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY + name;
+    public static File getFile(String name) {
+        return new File(FILE_DIRECTORY, name);
     }
+
+
 }
