@@ -18,6 +18,11 @@
     <string name="type_hint">Тип</string>
     <string name="type_desc">Beer type</string>
 
+    <string name="alcohol_percent_hint">алк.%</string>
+    <string name="price_hint">Стоимость</string>
+    <string name="volume_hint">Объем</string>
+    <string name="note_content_hint">Добавьте описание…</string>
+
     <string name="rating">Рейтинг</string>
     <string name="rating_desc">Rating</string>
 

@@ -32,7 +32,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
+        setContentView(R.layout.activity_mutable);
 
         imageView = findViewById(R.id.mainImage);
         imageView.setOnClickListener(this);
