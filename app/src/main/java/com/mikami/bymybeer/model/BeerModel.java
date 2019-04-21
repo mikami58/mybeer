@@ -1,7 +1,7 @@
 package com.mikami.bymybeer.model;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 
 /**
  * Beer model
@@ -12,7 +12,7 @@ public class BeerModel implements Serializable {
 
     private long id;
 
-    private Instant created;
+    private Date created;
 
     private String name;
 
@@ -31,7 +31,7 @@ public class BeerModel implements Serializable {
     public BeerModel() { }
 
     public BeerModel(long id, String name, String imageName, String type,
-                     float alcoholPercentage, PriceModel beerPrice, RatingModel rating) {
+                     float alcoholPercentage, PriceModel beerPrice, RatingModel rating, String note) {
         this.id = id;
         this.name = name;
         this.imageName = imageName;
@@ -39,7 +39,7 @@ public class BeerModel implements Serializable {
         this.alcoholPercentage = alcoholPercentage;
         this.beerPrice = beerPrice;
         this.rating = rating;
-        this.note = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+        this.note = note;
     }
 
     /**
@@ -52,9 +52,9 @@ public class BeerModel implements Serializable {
     /**
      * @return Date and time of review creation
      */
-    public Instant getCreated() { return created; }
+    public Date getCreated() { return created; }
 
-    public void setCreated(Instant created) { this.created = created; }
+    public void setCreated(Date created) { this.created = created; }
 
     /**
      * @return Beer name

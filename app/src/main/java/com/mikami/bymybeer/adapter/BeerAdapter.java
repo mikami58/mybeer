@@ -11,27 +11,26 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.mikami.bymybeer.R;
 import com.mikami.bymybeer.activity.DisplayActivity;
 import com.mikami.bymybeer.model.BeerModel;
 import com.mikami.bymybeer.model.PriceModel;
 import com.mikami.bymybeer.utility.FileService;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder> {
 
     private Context mContext;
 
-    private ArrayList<BeerModel> beerList;
+    private List<BeerModel> beerList;
 
-    public BeerAdapter(Context mContext, ArrayList<BeerModel> beerList) {
+    public BeerAdapter(Context mContext, List<BeerModel> beerList) {
         this.mContext = mContext;
         this.beerList = beerList;
     }
 
-    public void updateItems( ArrayList<BeerModel> beerList) {
+    public void updateItems( List<BeerModel> beerList) {
         this.beerList = beerList;
         notifyDataSetChanged();
     }

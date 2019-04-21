@@ -32,34 +32,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ensurePermissions();
         
-        ArrayList<BeerModel> beerList = new ArrayList<>();
-        beerList.add(new BeerModel(0, "Gold mine beer", "0.jpg", "Светлое", 2.5f, new PriceModel(50, 0.5f), new RatingModel(1.2f)));
-        beerList.add(new BeerModel(1, "Три медведя", "1.jpg", "Светлое", 4.7f, new PriceModel(50, 0.5f), new RatingModel(3.1f)));
-        beerList.add(new BeerModel(2, "Жигулевское", "2.jpg", "Темное", 3.2f, new PriceModel(50, 0.5f), new RatingModel(4.7f)));
-        beerList.add(new BeerModel(3, "Старый мельник", "3.jpg", "Светлое", 1.7f, new PriceModel(50, 0.5f), new RatingModel(2.7f)));
-        beerList.add(new BeerModel(4, "Балтика", "4.jpg", "Темное", 3.2f, new PriceModel(50, 0.5f), new RatingModel(0.2f)));
-        beerList.add(new BeerModel(5, "Жигули", "5.jpg", "Темное", 4.1f, new PriceModel(50, 0.5f), new RatingModel(3.9f)));
-        beerList.add(new BeerModel(6, "Клинское", "6.jpg", "Светлое", 4.9f, new PriceModel(50, 0.5f), new RatingModel(4.1f)));
-        beerList.add(new BeerModel(7, "Белый медведь", "7.jpg", "Темное", 3.1f, new PriceModel(50, 0.5f), new RatingModel(4.7f)));
-        beerList.add(new BeerModel(8, "Арсенальное", "8.jpg", "Светлое", 2.1f, new PriceModel(50, 0.5f), new RatingModel(3.8f)));
-        beerList.add(new BeerModel(9, "Очаково", "9.jpg", "Темное", 0.5f, new PriceModel(50, 0.5f), new RatingModel(2.1f)));
-        beerList.add(new BeerModel(10, "Gold mine beer", "0.jpg", "Темное", 2.5f, new PriceModel(50, 0.5f), new RatingModel(1.2f)));
-        beerList.add(new BeerModel(11, "Три медведя", "1.jpg", "Темное", 4.7f, new PriceModel(50, 0.5f), new RatingModel(3.1f)));
-        beerList.add(new BeerModel(12, "Жигулевское", "2.jpg", "Светлое", 3.2f, new PriceModel(50, 0.5f), new RatingModel(4.7f)));
-        beerList.add(new BeerModel(13, "Старый мельник", "3.jpg", "Темное", 1.7f, new PriceModel(50, 0.5f), new RatingModel(2.7f)));
-        beerList.add(new BeerModel(14, "Балтика", "4.jpg", "Темное", 3.2f, new PriceModel(50, 0.5f), new RatingModel(0.2f)));
-        beerList.add(new BeerModel(15, "Жигули", "5.jpg", "Светлое", 4.1f, new PriceModel(50, 0.5f), new RatingModel(3.9f)));
-        beerList.add(new BeerModel(16, "Клинское", "6.jpg", "Темное", 4.9f, new PriceModel(50, 0.5f), new RatingModel(4.1f)));
-        beerList.add(new BeerModel(17, "Белый медведь", "7.jpg", "Светлое", 3.1f, new PriceModel(50, 0.5f), new RatingModel(4.7f)));
-        beerList.add(new BeerModel(18, "Арсенальное", "8.jpg", "Светлое", 2.1f, new PriceModel(50, 0.5f), new RatingModel(3.8f)));
-        beerList.add(new BeerModel(19, "Очаково", "9.jpg", "Темное", 0.5f, new PriceModel(50, 0.5f), new RatingModel(2.1f)));
-
-        DataProvider.getInstance().save(beerList);
+//        ArrayList<BeerModel> beerList = new ArrayList<>();
+//        beerList.add(new BeerModel(0, "Gold mine beer", "0.jpg", "Светлое", 2.5f, new PriceModel(50, 0.5f), new RatingModel(1.2f)));
+//        beerList.add(new BeerModel(1, "Три медведя", "1.jpg", "Светлое", 4.7f, new PriceModel(50, 0.5f), new RatingModel(3.1f)));
+//        beerList.add(new BeerModel(2, "Жигулевское", "2.jpg", "Темное", 3.2f, new PriceModel(50, 0.5f), new RatingModel(4.7f)));
+//        beerList.add(new BeerModel(3, "Старый мельник", "3.jpg", "Светлое", 1.7f, new PriceModel(50, 0.5f), new RatingModel(2.7f)));
+//        beerList.add(new BeerModel(4, "Балтика", "4.jpg", "Темное", 3.2f, new PriceModel(50, 0.5f), new RatingModel(0.2f)));
+//        beerList.add(new BeerModel(5, "Жигули", "5.jpg", "Темное", 4.1f, new PriceModel(50, 0.5f), new RatingModel(3.9f)));
+//        beerList.add(new BeerModel(6, "Клинское", "6.jpg", "Светлое", 4.9f, new PriceModel(50, 0.5f), new RatingModel(4.1f)));
+//        beerList.add(new BeerModel(7, "Белый медведь", "7.jpg", "Темное", 3.1f, new PriceModel(50, 0.5f), new RatingModel(4.7f)));
+//        beerList.add(new BeerModel(8, "Арсенальное", "8.jpg", "Светлое", 2.1f, new PriceModel(50, 0.5f), new RatingModel(3.8f)));
+//        beerList.add(new BeerModel(9, "Очаково", "9.jpg", "Темное", 0.5f, new PriceModel(50, 0.5f), new RatingModel(2.1f)));
+//        beerList.add(new BeerModel(10, "Gold mine beer", "0.jpg", "Темное", 2.5f, new PriceModel(50, 0.5f), new RatingModel(1.2f)));
+//        beerList.add(new BeerModel(11, "Три медведя", "1.jpg", "Темное", 4.7f, new PriceModel(50, 0.5f), new RatingModel(3.1f)));
+//        beerList.add(new BeerModel(12, "Жигулевское", "2.jpg", "Светлое", 3.2f, new PriceModel(50, 0.5f), new RatingModel(4.7f)));
+//        beerList.add(new BeerModel(13, "Старый мельник", "3.jpg", "Темное", 1.7f, new PriceModel(50, 0.5f), new RatingModel(2.7f)));
+//        beerList.add(new BeerModel(14, "Балтика", "4.jpg", "Темное", 3.2f, new PriceModel(50, 0.5f), new RatingModel(0.2f)));
+//        beerList.add(new BeerModel(15, "Жигули", "5.jpg", "Светлое", 4.1f, new PriceModel(50, 0.5f), new RatingModel(3.9f)));
+//        beerList.add(new BeerModel(16, "Клинское", "6.jpg", "Темное", 4.9f, new PriceModel(50, 0.5f), new RatingModel(4.1f)));
+//        beerList.add(new BeerModel(17, "Белый медведь", "7.jpg", "Светлое", 3.1f, new PriceModel(50, 0.5f), new RatingModel(4.7f)));
+//        beerList.add(new BeerModel(18, "Арсенальное", "8.jpg", "Светлое", 2.1f, new PriceModel(50, 0.5f), new RatingModel(3.8f)));
+//        beerList.add(new BeerModel(19, "Очаково", "9.jpg", "Темное", 0.5f, new PriceModel(50, 0.5f), new RatingModel(2.1f)));
+//
+//        DataProvider.getInstance().save(beerList);
 
         mainRecyclerView = findViewById(R.id.mainRecycler);
         mainRecyclerView.setHasFixedSize(true);
         mainRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mainRecyclerView.setAdapter(new BeerAdapter(this, beerList));
+        mainRecyclerView.setAdapter(new BeerAdapter(this, DataProvider.getInstance().getBeerList()));
 
         actionButton = findViewById(R.id.mainAddButton);
         actionButton.setOnClickListener(this);

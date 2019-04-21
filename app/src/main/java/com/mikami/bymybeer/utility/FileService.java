@@ -12,7 +12,9 @@ import java.io.File;
 
 public final class FileService {
 
-    private static final String FILE_DIRECTORY = Environment.getExternalStorageDirectory() + "/ByMyBeer/";
+    private static final String FILE_DIRECTORY = Environment.getExternalStorageDirectory() + "/.mybeer/";
+
+    private static final String IMAGES_DIRECTORY = FILE_DIRECTORY + "images/";
 
     private static final int PLACEHOLDER = R.drawable.ic_launcher_background;
 
