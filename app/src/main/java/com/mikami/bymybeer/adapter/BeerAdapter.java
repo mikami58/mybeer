@@ -15,24 +15,18 @@ import com.mikami.bymybeer.R;
 import com.mikami.bymybeer.activity.DisplayActivity;
 import com.mikami.bymybeer.model.BeerModel;
 import com.mikami.bymybeer.model.PriceModel;
+import com.mikami.bymybeer.utility.DataProvider;
 import com.mikami.bymybeer.utility.FileService;
-
-import java.util.List;
 
 public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder> {
 
     private Context mContext;
 
-    private List<BeerModel> beerList;
+    private DataProvider provider;
 
-    public BeerAdapter(Context mContext, List<BeerModel> beerList) {
+    public BeerAdapter(Context mContext, DataProvider provider) {
         this.mContext = mContext;
-        this.beerList = beerList;
-    }
-
-    public void updateItems( List<BeerModel> beerList) {
-        this.beerList = beerList;
-        notifyDataSetChanged();
+        this.provider = provider;
     }
 
     @NonNull
@@ -46,7 +40,7 @@ public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder
     @Override
     public void onBindViewHolder(@NonNull BeerViewHolder holder, final int i) {
 
-        final BeerModel model = beerList.get(i);
+        final BeerModel model = provider.getBeerList().get(i);
 
         holder.name.setText(model.getName());
         holder.ratingNumber.setText(String.valueOf(model.getRating().getAverage()));
@@ -62,19 +56,16 @@ public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder
 
         FileService.setImage(mContext, holder.image, model.getImageName());
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, DisplayActivity.class);
-                intent.putExtra("item", model);
-                mContext.startActivity(intent);
-            }
+        holder.parentLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, DisplayActivity.class);
+            intent.putExtra("item", model);
+            mContext.startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount() {
-        return beerList.size();
+        return provider.getBeerList().size();
     }
 
     public static final class BeerViewHolder extends RecyclerView.ViewHolder {

@@ -29,8 +29,7 @@ public final class DataProvider {
 
     private DataProvider() {
         gson = new GsonBuilder().create();
-        jsonFile = FileService.getFile(JSON_FILE_NAME);
-        jsonFile.mkdirs();
+        jsonFile = getOrCreateFile();
         beerList = new ArrayList<>();
         load();
     }
@@ -55,11 +54,13 @@ public final class DataProvider {
     private void load() {
         try (BufferedReader reader = new BufferedReader(new FileReader(jsonFile))) {
             BeerModel[] models = gson.fromJson(reader, BeerModel[].class);
-            beerList.addAll(Arrays.asList(models));
+            if (models != null) {
+                beerList.addAll(Arrays.asList(models));
+            }
             currentMax = beerList.stream().mapToLong(BeerModel::getId).max().orElse(0);
             Log.d(TAG, "List was saved");
         } catch (Exception e) {
-            Log.d(TAG, "Exception occurred while loading list");
+            Log.d(TAG, "Exception occurred while loading list", e);
         }
     }
 
@@ -68,7 +69,20 @@ public final class DataProvider {
             writer.write(gson.toJson(beerList));
             Log.d(TAG, "List was saved");
         } catch (IOException e) {
-            Log.d(TAG, "Exception occurred while saving list");
+            Log.d(TAG, "Exception occurred while saving list", e);
         }
+    }
+
+    private File getOrCreateFile() {
+        File file = new File(FileService.getRootFolder(), JSON_FILE_NAME);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                Log.d(TAG, "File was created");
+            } catch (IOException e) {
+                Log.d(TAG, "Exception occurred while creating file", e);
+            }
+        }
+        return file;
     }
 }

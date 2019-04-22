@@ -1,40 +1,32 @@
 package com.mikami.bymybeer.activity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-
+import android.widget.*;
 import com.mikami.bymybeer.R;
 import com.mikami.bymybeer.model.BeerModel;
 import com.mikami.bymybeer.model.PriceModel;
 import com.mikami.bymybeer.model.RatingModel;
 import com.mikami.bymybeer.utility.DataProvider;
 import com.mikami.bymybeer.utility.FileService;
-import com.mikami.bymybeer.utility.PermissionsService;
+import com.mikami.bymybeer.utility.GenericFileProvider;
 
 import java.io.File;
 
 public class AddActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private String imagePath;
+    private String imageName;
 
-    private Toolbar toolbar;
-
-    private ImageView imageView;
+    private ImageView mainImage;
 
     private EditText title;
 
@@ -73,34 +65,62 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.cameraButton:
-                takePhoto();
-                break;
-            case R.id.action_confirm:
-                save();
-                break;
+        if (view.getId() == R.id.cameraButton)
+            takePhoto();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_confirm) {
+            save();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        imageView.setImageBitmap(BitmapFactory.decodeFile(imagePath));
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        takePhoto();
+        FileService.setImage(this, mainImage, imageName);
     }
 
     private void save() {
+        if (fieldsNotBlank()) {
+            DataProvider.getInstance().addAndSave(getModel());
+            this.finish();
+        } else {
+            Toast.makeText(this, "Необходимо заполнить все поля", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void takePhoto() {
+        String fileName = FileService.createImageName();
+        File photo = FileService.getOrCreateImage(fileName);
+        Uri photoUri = GenericFileProvider.getUriForFile(AddActivity.this, photo);
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, photoUri);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        startActivityForResult(intent, 0);
+        imageName = fileName;
+    }
+
+    private boolean fieldsNotBlank() {
+        return !(TextUtils.isEmpty(title.getText().toString())
+                || TextUtils.isEmpty(type.getText().toString())
+                || TextUtils.isEmpty(alcoholPercent.getText().toString())
+                || TextUtils.isEmpty(price.getText().toString())
+                || TextUtils.isEmpty(volume.getText().toString()));
+    }
+
+    private BeerModel getModel() {
         BeerModel model = new BeerModel();
 
         model.setName(title.getText().toString());
         model.setType(type.getText().toString());
         model.setAlcoholPercentage(Float.valueOf(alcoholPercent.getText().toString()));
-        model.setImageName(imagePath);
+        model.setImageName(imageName);
         model.setNote(note.getText().toString());
 
         PriceModel priceModel = new PriceModel();
@@ -116,42 +136,13 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         ratingModel.setAlcohol(alcoholRating.getRating());
         model.setRating(ratingModel);
 
-        DataProvider.getInstance().addAndSave(model);
-        this.finish();
-    }
-
-    private void takePhoto() {
-        String[] permissions = {
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA};
-
-        PermissionsService.executeWithPermissions(this, permissions, new Runnable() {
-            @Override
-            public void run() {
-
-                File photo = FileService.getFile(String.valueOf(System.currentTimeMillis()) + ".png");
-
-                Uri photoUri = FileProvider.getUriForFile(
-                        AddActivity.this,
-                        AddActivity.this.getApplicationContext().getPackageName() + ".com.mikami.bymybeer.provider", photo);
-
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, photoUri);
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                startActivityForResult(intent, 0);
-
-                imagePath = photo.getPath();
-                Log.d("TakePhoto", imagePath);
-            }
-        });
+        return model;
     }
 
     private void loadElements() {
         setContentView(R.layout.activity_mutable);
 
-        imageView = findViewById(R.id.mainImage);
+        mainImage = findViewById(R.id.mainImage);
         title = findViewById(R.id.title);
         type = findViewById(R.id.type);
         alcoholPercent = findViewById(R.id.alcohol_percent);
@@ -164,11 +155,12 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         alcoholRating = findViewById(R.id.alcohol_rating);
         note = findViewById(R.id.note_content);
 
-        imageView.setOnClickListener(this);
+        ImageButton cameraButton = findViewById(R.id.cameraButton);
+        cameraButton.setOnClickListener(this);
     }
 
     private void loadToolbar() {
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

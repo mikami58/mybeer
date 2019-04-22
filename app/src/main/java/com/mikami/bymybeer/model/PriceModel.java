@@ -15,14 +15,13 @@ public class PriceModel implements Serializable {
 
     private float volume;
 
-    private Currency currency;
+    private Currency currency = Currency.RUB;
 
     public PriceModel() { }
 
     public PriceModel(float price, float volume) {
         this.price = price;
         this.volume = volume;
-        this.currency = Currency.RUB;
     }
 
     /**
