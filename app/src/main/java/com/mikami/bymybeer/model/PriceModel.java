@@ -41,7 +41,7 @@ public class PriceModel implements Serializable {
     /**
      * @return Price currency
      */
-    public Currency getCurrency() { return currency; }
+    public Currency getCurrency() { return Currency.RUB; }
 
     public void setCurrency(Currency currency) { this.currency = currency; }
 }

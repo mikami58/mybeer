@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">bymybeer</string>
+    <string name="app_name">MyBeer</string>
 
     <string name="rub">руб.</string>
     <string name="usd">$</string>

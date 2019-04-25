@@ -18,7 +18,7 @@ public final class FileService {
 
     private static final String JPG = ".jpg";
 
-    private static final int PLACEHOLDER = R.drawable.ic_launcher_background;
+    private static final int PLACEHOLDER = R.drawable.no_image;
 
     private FileService() { }
 

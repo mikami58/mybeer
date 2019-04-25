@@ -8,9 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
+import android.widget.*;
 import com.mikami.bymybeer.R;
 import com.mikami.bymybeer.activity.DisplayActivity;
 import com.mikami.bymybeer.model.BeerModel;
@@ -18,9 +16,14 @@ import com.mikami.bymybeer.model.PriceModel;
 import com.mikami.bymybeer.utility.DataProvider;
 import com.mikami.bymybeer.utility.FileService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.mikami.bymybeer.utility.Constants.EXTRA_NAME;
 
-public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder> {
+public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder> implements Filterable {
+
+    private List<BeerModel> displayList;
 
     private Activity parentActivity;
 
@@ -29,6 +32,7 @@ public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder
     public BeerAdapter(Activity parentActivity, DataProvider provider) {
         this.parentActivity = parentActivity;
         this.provider = provider;
+        displayList = new ArrayList<>(provider.getBeerList());
     }
 
     @NonNull
@@ -42,7 +46,7 @@ public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder
     @Override
     public void onBindViewHolder(@NonNull BeerViewHolder holder, final int i) {
 
-        final BeerModel model = provider.getBeerList().get(i);
+        final BeerModel model = displayList.get(i);
 
         holder.name.setText(model.getName());
         holder.ratingNumber.setText(String.valueOf(model.getRating().getAverage()));
@@ -67,7 +71,47 @@ public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder
 
     @Override
     public int getItemCount() {
-        return provider.getBeerList().size();
+        return displayList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                List<BeerModel> filteredList = new ArrayList<>();
+                if (constraint == null || constraint.length() == 0) {
+                    filteredList.addAll(provider.getBeerList());
+                } else {
+                    String pattern = constraint.toString().toLowerCase().trim();
+                    provider.getBeerList().stream()
+                            .filter(item -> contains(item.getName(), pattern) || contains(item.getType(), pattern))
+                            .forEach(filteredList::add);
+                }
+                FilterResults results = new FilterResults();
+                results.values = filteredList;
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                updateList((List) results.values);
+            }
+
+            private boolean contains(String text, String pattern) {
+                return text != null && text.toLowerCase().contains(pattern);
+            }
+        };
+    }
+
+    public void reload() {
+        updateList(provider.getBeerList());
+    }
+
+    private void updateList(List<BeerModel> list) {
+        displayList.clear();
+        displayList.addAll(list);
+        notifyDataSetChanged();
     }
 
     public static final class BeerViewHolder extends RecyclerView.ViewHolder {

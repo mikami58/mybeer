@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".DisplayActivity">
-    <item
-        android:id="@+id/action_confirm"
-        android:orderInCategory="300"
-        android:title="User"
-        android:icon="@drawable/ic_confirm_white_24dp"
-        app:showAsAction="always" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_confirm"
+          android:title="Confirm"
+          android:icon="@drawable/ic_confirm_white_24dp"
+          app:showAsAction="ifRoom" />
+
 </menu>
