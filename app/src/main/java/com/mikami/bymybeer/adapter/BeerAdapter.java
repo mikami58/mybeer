@@ -1,6 +1,6 @@
 package com.mikami.bymybeer.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -18,14 +18,16 @@ import com.mikami.bymybeer.model.PriceModel;
 import com.mikami.bymybeer.utility.DataProvider;
 import com.mikami.bymybeer.utility.FileService;
 
+import static com.mikami.bymybeer.utility.Constants.EXTRA_NAME;
+
 public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder> {
 
-    private Context mContext;
+    private Activity parentActivity;
 
     private DataProvider provider;
 
-    public BeerAdapter(Context mContext, DataProvider provider) {
-        this.mContext = mContext;
+    public BeerAdapter(Activity parentActivity, DataProvider provider) {
+        this.parentActivity = parentActivity;
         this.provider = provider;
     }
 
@@ -45,21 +47,21 @@ public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder
         holder.name.setText(model.getName());
         holder.ratingNumber.setText(String.valueOf(model.getRating().getAverage()));
         holder.ratingBar.setRating(model.getRating().getAverage());
-        holder.smallDesc.setText(mContext.getString(R.string.small_desc, model.getType(), model.getAlcoholPercentage()));
+        holder.smallDesc.setText(parentActivity.getString(R.string.small_desc, model.getType(), model.getAlcoholPercentage()));
 
         PriceModel price = model.getBeerPrice();
-        holder.priceAndVolume.setText(mContext.getString(
+        holder.priceAndVolume.setText(parentActivity.getString(
                 R.string.price_and_volume,
                 price.getPrice(),
-                mContext.getString(price.getCurrency().getResourceId()),
+                parentActivity.getString(price.getCurrency().getResourceId()),
                 price.getVolume()));
 
-        FileService.setImage(mContext, holder.image, model.getImageName());
+        FileService.setImage(parentActivity, holder.image, model.getImageName());
 
         holder.parentLayout.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, DisplayActivity.class);
-            intent.putExtra("item", model);
-            mContext.startActivity(intent);
+            Intent intent = new Intent(parentActivity, DisplayActivity.class);
+            intent.putExtra(EXTRA_NAME, model.getId());
+            parentActivity.startActivityForResult(intent, 0);
         });
     }
 

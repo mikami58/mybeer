@@ -44,10 +44,34 @@ public final class DataProvider {
         return beerList;
     }
 
+    public BeerModel findById(long id) {
+        return beerList.stream()
+                .filter(b -> b.getId() == id)
+                .findFirst()
+                .orElse(new BeerModel());
+    }
+
     public void addAndSave(BeerModel model) {
         model.setId(++currentMax);
         model.setCreated(new Date());
         beerList.add(model);
+        save();
+    }
+
+    public void modifyAndSave(long id, BeerModel model) {
+        BeerModel existingModel = findById(id);
+        existingModel.setName(model.getName());
+        existingModel.setType(model.getType());
+        existingModel.setAlcoholPercentage(model.getAlcoholPercentage());
+        existingModel.setBeerPrice(model.getBeerPrice());
+        existingModel.setRating(model.getRating());
+        existingModel.setNote(model.getNote());
+        existingModel.setImageName(model.getImageName());
+        save();
+    }
+
+    public void deleteAndSave(long id) {
+        beerList.removeIf(b -> b.getId() == id);
         save();
     }
 

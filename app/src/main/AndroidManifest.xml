@@ -37,6 +37,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".activity.DisplayActivity"></activity>
+        <activity android:name=".activity.ModifyActivity"/>
     </application>
 
 </manifest>
